@@ -10,6 +10,13 @@
 
 @implementation FMItemModel
 
+
+- (id)initWithItem:(NSString *)itemName
+{
+    self = [self initWithItem:itemName withDescription:@""];
+    return self;
+}
+
 - (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription
 {
     self = [super init];

@@ -15,4 +15,7 @@
 @property (nonatomic, strong) NSArray *itemTags;
 @property (nonatomic, strong) NSArray *itemImages;
 
+- (id)initWithItem:(NSString *)itemName;
+- (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription;
+
 @end

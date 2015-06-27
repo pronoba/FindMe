@@ -22,6 +22,16 @@
     return sharedManager;
 }
 
+- (void)createNewModelWithName:(NSString *)modelName
+{
+    FMItemModel *model = [[FMItemModel alloc] initWithItem:modelName];
+    [self.itemArray addObject:model];
+}
+
+- (FMItemModel *)currentAddedModel
+{
+    return [self.itemArray firstObject];
+}
 
 - (NSArray *)searchForItemsWithTags:(NSString *) tags
 {

@@ -12,7 +12,8 @@
 #import "PAPhotoCollectionViewCell.h"
 #import "PAPhotoViewController.h"
 
-@interface PAPhotoCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface PAPhotoCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
+                                                UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic, strong) NSOperationQueue *queue;
@@ -25,7 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.currentItemModel = [[FMItemModel alloc] init];
+    [[FMModelManager sharedManager] createNewModelWithName:@"New Model"];
+    self.currentItemModel = [[FMModelManager sharedManager] currentAddedModel];
+    
+    [self startCameraControllerFromViewController:self usingDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -48,6 +52,34 @@
 }
 */
 
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
+    {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else
+    {
+        cameraUI.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = NO;
+    
+    cameraUI.delegate = delegate;
+    
+    [controller presentViewController:cameraUI animated:YES completion:nil];
+    return YES;
+}
 
 -(void)setImageForCell:(PAPhotoCollectionViewCell *)cell withImage:(UIImage *)image
 {
@@ -151,4 +183,21 @@
 {
     [self performSegueWithIdentifier:@"showDetailSegue" sender:self];
 }
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+//    self.imageView.image = chosenImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
 @end
