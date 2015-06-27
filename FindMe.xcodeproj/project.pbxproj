@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFB81B3A91A000683C21 /* FMInitialViewController.m */; };
+		7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFBF1B3A92C800683C21 /* FMItemModel.m */; };
+		7144CFC41B3A946500683C21 /* FMModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFC31B3A946500683C21 /* FMModelManager.m */; };
+		7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFC91B3A99C000683C21 /* FMFindViewController.m */; };
+		7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */; };
+		7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */; };
+		7144CFD41B3AA59A00683C21 /* PAPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */; };
 		719C6D931A898D6E0084D6EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D921A898D6E0084D6EA /* main.m */; };
 		719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D951A898D6E0084D6EA /* AppDelegate.m */; };
-		719C6D991A898D6E0084D6EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D981A898D6E0084D6EA /* ViewController.m */; };
 		719C6D9C1A898D6E0084D6EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9A1A898D6E0084D6EA /* Main.storyboard */; };
 		719C6D9E1A898D6E0084D6EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9D1A898D6E0084D6EA /* Images.xcassets */; };
 		719C6DA11A898D6E0084D6EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9F1A898D6E0084D6EA /* LaunchScreen.xib */; };
@@ -27,13 +33,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7144CFB71B3A91A000683C21 /* FMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMInitialViewController.h; sourceTree = "<group>"; };
+		7144CFB81B3A91A000683C21 /* FMInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMInitialViewController.m; sourceTree = "<group>"; };
+		7144CFBE1B3A92C800683C21 /* FMItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMItemModel.h; path = Model/FMItemModel.h; sourceTree = "<group>"; };
+		7144CFBF1B3A92C800683C21 /* FMItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMItemModel.m; path = Model/FMItemModel.m; sourceTree = "<group>"; };
+		7144CFC11B3A943600683C21 /* FMGlobalDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMGlobalDefines.h; sourceTree = "<group>"; };
+		7144CFC21B3A946500683C21 /* FMModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMModelManager.h; path = Model/FMModelManager.h; sourceTree = "<group>"; };
+		7144CFC31B3A946500683C21 /* FMModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMModelManager.m; path = Model/FMModelManager.m; sourceTree = "<group>"; };
+		7144CFC81B3A99C000683C21 /* FMFindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMFindViewController.h; sourceTree = "<group>"; };
+		7144CFC91B3A99C000683C21 /* FMFindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMFindViewController.m; sourceTree = "<group>"; };
+		7144CFCC1B3AA59A00683C21 /* PAPhotoCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoCollectionViewCell.h; sourceTree = "<group>"; };
+		7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewCell.m; sourceTree = "<group>"; };
+		7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoCollectionViewController.h; sourceTree = "<group>"; };
+		7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewController.m; sourceTree = "<group>"; };
+		7144CFD01B3AA59A00683C21 /* PAPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoViewController.h; sourceTree = "<group>"; };
+		7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoViewController.m; sourceTree = "<group>"; };
 		719C6D8D1A898D6E0084D6EA /* FindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		719C6D911A898D6E0084D6EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		719C6D921A898D6E0084D6EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		719C6D941A898D6E0084D6EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		719C6D951A898D6E0084D6EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		719C6D971A898D6E0084D6EA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		719C6D981A898D6E0084D6EA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		719C6D9B1A898D6E0084D6EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		719C6D9D1A898D6E0084D6EA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		719C6DA01A898D6E0084D6EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -60,6 +79,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7144CFBD1B3A92A500683C21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7144CFC21B3A946500683C21 /* FMModelManager.h */,
+				7144CFC31B3A946500683C21 /* FMModelManager.m */,
+				7144CFBE1B3A92C800683C21 /* FMItemModel.h */,
+				7144CFBF1B3A92C800683C21 /* FMItemModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7144CFCB1B3AA59A00683C21 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7144CFCC1B3AA59A00683C21 /* PAPhotoCollectionViewCell.h */,
+				7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		719C6D841A898D6E0084D6EA = {
 			isa = PBXGroup;
 			children = (
@@ -81,10 +120,19 @@
 		719C6D8F1A898D6E0084D6EA /* FindMe */ = {
 			isa = PBXGroup;
 			children = (
+				7144CFCB1B3AA59A00683C21 /* Views */,
+				7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */,
+				7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */,
+				7144CFD01B3AA59A00683C21 /* PAPhotoViewController.h */,
+				7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */,
+				7144CFC11B3A943600683C21 /* FMGlobalDefines.h */,
+				7144CFBD1B3A92A500683C21 /* Model */,
 				719C6D941A898D6E0084D6EA /* AppDelegate.h */,
 				719C6D951A898D6E0084D6EA /* AppDelegate.m */,
-				719C6D971A898D6E0084D6EA /* ViewController.h */,
-				719C6D981A898D6E0084D6EA /* ViewController.m */,
+				7144CFC81B3A99C000683C21 /* FMFindViewController.h */,
+				7144CFC91B3A99C000683C21 /* FMFindViewController.m */,
+				7144CFB71B3A91A000683C21 /* FMInitialViewController.h */,
+				7144CFB81B3A91A000683C21 /* FMInitialViewController.m */,
 				719C6D9A1A898D6E0084D6EA /* Main.storyboard */,
 				719C6D9D1A898D6E0084D6EA /* Images.xcassets */,
 				719C6D9F1A898D6E0084D6EA /* LaunchScreen.xib */,
@@ -168,6 +216,7 @@
 				TargetAttributes = {
 					719C6D8C1A898D6E0084D6EA = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 7R24YJ9B35;
 					};
 					719C6DA51A898D6E0084D6EA = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -219,9 +268,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				719C6D991A898D6E0084D6EA /* ViewController.m in Sources */,
+				7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */,
+				7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */,
 				719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */,
+				7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */,
 				719C6D931A898D6E0084D6EA /* main.m in Sources */,
+				7144CFD41B3AA59A00683C21 /* PAPhotoViewController.m in Sources */,
+				7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */,
+				7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */,
+				7144CFC41B3A946500683C21 /* FMModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +400,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -355,6 +412,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,6 +473,7 @@
 				719C6DB21A898D6E0084D6EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		719C6DB31A898D6E0084D6EA /* Build configuration list for PBXNativeTarget "FindMeTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +482,7 @@
 				719C6DB51A898D6E0084D6EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
