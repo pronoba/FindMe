@@ -12,8 +12,8 @@
 
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *itemDescription;
-@property (nonatomic, strong) NSArray *itemTags;
-@property (nonatomic, strong) NSArray *itemImages;
+@property (nonatomic, strong) NSMutableArray *itemTags;
+@property (nonatomic, strong) NSMutableArray *itemImages;
 
 - (id)initWithItem:(NSString *)itemName;
 - (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription;

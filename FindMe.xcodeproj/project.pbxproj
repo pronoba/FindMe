@@ -21,6 +21,7 @@
 		719C6D9E1A898D6E0084D6EA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9D1A898D6E0084D6EA /* Images.xcassets */; };
 		719C6DA11A898D6E0084D6EA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9F1A898D6E0084D6EA /* LaunchScreen.xib */; };
 		719C6DAD1A898D6E0084D6EA /* FindMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6DAC1A898D6E0084D6EA /* FindMeTests.m */; };
+		71A605841C69DA6300010985 /* NSItemPhotoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 71A605831C69DA6300010985 /* NSItemPhotoDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		719C6DA61A898D6E0084D6EA /* FindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		719C6DAB1A898D6E0084D6EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		719C6DAC1A898D6E0084D6EA /* FindMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeTests.m; sourceTree = "<group>"; };
+		71A605821C69DA6300010985 /* NSItemPhotoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSItemPhotoDataSource.h; path = Model/NSItemPhotoDataSource.h; sourceTree = "<group>"; };
+		71A605831C69DA6300010985 /* NSItemPhotoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSItemPhotoDataSource.m; path = Model/NSItemPhotoDataSource.m; sourceTree = "<group>"; };
 		E55C02C767010A2C0BBFE5C6 /* Pods-FindMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindMe/Pods-FindMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +113,8 @@
 				7144CFBF1B3A92C800683C21 /* FMItemModel.m */,
 				719750E41C69739C00F6F40D /* FMPhotoObject.h */,
 				719750E51C69739C00F6F40D /* FMPhotoObject.m */,
+				71A605821C69DA6300010985 /* NSItemPhotoDataSource.h */,
+				71A605831C69DA6300010985 /* NSItemPhotoDataSource.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */,
 				7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */,
 				719750E61C69739C00F6F40D /* FMPhotoObject.m in Sources */,
+				71A605841C69DA6300010985 /* NSItemPhotoDataSource.m in Sources */,
 				719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */,
 				7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */,
 				719C6D931A898D6E0084D6EA /* main.m in Sources */,

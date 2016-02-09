@@ -16,4 +16,12 @@
 
 @implementation PAPhotoCollectionViewCell
 
+
++ (NSString *)reuseIdentifier
+{
+    NSString *reuseIdentifier = NSStringFromClass([self class]);
+    
+    return reuseIdentifier;
+}
+
 @end

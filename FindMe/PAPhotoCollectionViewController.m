@@ -10,7 +10,8 @@
 #import "PAPhotoCollectionViewController.h"
 #import "FMModelManager.h"
 #import "PAPhotoCollectionViewCell.h"
-#import "PAPhotoViewController.h"
+#import "NSItemPhotoDataSource.h"
+#import "NYTPhotosViewController.h"
 
 @interface PAPhotoCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
                                                 UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -19,6 +20,10 @@
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) FMItemModel *currentItemModel;
+
+@property (weak, nonatomic) IBOutlet UITextField *tagsTextField;
+
+
 @end
 
 @implementation PAPhotoCollectionViewController
@@ -34,7 +39,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -97,53 +102,30 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    FMModelManager *modelManager = [FMModelManager sharedManager];
-    return [modelManager.itemArray count];
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+    return ([photoDataSource numberOfPhotosForItem:self.currentItemModel]);
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"photoCell";
-    __block PANetworkManager *networkManager = [PANetworkManager sharedManager];
-    __block PAPhotoModel *photoModel = [networkManager.photoArray objectAtIndex:indexPath.row];
-    
-    UIImage *photoImage = [networkManager.imageCache objectForKey:[photoModel.imageURL absoluteString]];
+    PAPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: [PAPhotoCollectionViewCell reuseIdentifier]
+                                                                                     forIndexPath: indexPath];
+
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+
+    UIImage *photoImage = [photoDataSource imageForItem:self.currentItemModel atIndex:indexPath.row];
     
     if(photoImage) {
         [self setImageForCell:cell withImage:photoImage];
-    } else {
-        cell.photoImageView.image = nil;
-        cell.photoImageView.alpha = 0.0;
-        WeakSelf weakSelf = self;
-        
-        [networkManager downloadImageFromURL:photoModel.imageURL withCompletion:^(NSData *imageData, NSError *error) {
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                __strong typeof(weakSelf) strongSelf = weakSelf;
-                if (strongSelf) {
-                    if (cell) {
-                        [strongSelf setImageForCell:cell withImage:image];
-                    }
-                }
-            });
-            if (networkManager) {
-                [networkManager.imageCache setObject:image forKey:[photoModel.imageURL absoluteString]];
-            }
-        }];
     }
     
-    
-    return cell;}
+    return cell;
+}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    FMModelManager *networkManager = [PANetworkManager sharedManager];
-    if ([networkManager.photoArray count]) {
-        return 1;
-    }
-    
-    return 0;
+    return 1;
 }
 
 - (NSIndexPath *)getCurrentIndexPath
@@ -157,23 +139,14 @@
     return nil;
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // unwrap the controller if it's embedded in the nav controller.
-    UIViewController *destVC = segue.destinationViewController;
-    
-    if ([destVC isKindOfClass:[PAPhotoViewController class]])
-    {
-        PAPhotoViewController *photoViewController = (PAPhotoViewController *)destVC;
-        
-        NSIndexPath *indexPath = [self getCurrentIndexPath];
+#pragma mark actions
 
-        if (indexPath != nil) {
-            [photoViewController showImageforItem:self.currentItemModel atIndex:indexPath.row];
-        }
-        
-    }
+- (IBAction)saveItemsPressed:(id)sender {
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+
+    [photoDataSource saveItemWithName:self.tagsTextField.text];
 }
+
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -184,10 +157,14 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
-//    self.imageView.image = chosenImage;
-    
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+
+    [photoDataSource addImageToNewItem:chosenImage];
+    
+    [self.photoCollectionView reloadData];
     
 }
 

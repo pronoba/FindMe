@@ -8,6 +8,12 @@
 
 #import "FMModelManager.h"
 
+@interface FMModelManager ()
+
+@property (nonatomic, strong) NSCache *photoCache;
+
+@end
+
 @implementation FMModelManager
 
 + (instancetype)sharedManager
@@ -27,20 +33,37 @@
     
     if (self) {
         _itemArray = [FMModelManager unarchiveModelManager];
+        _photoCache = [[NSCache alloc] init];
     }
-    
     return self;
 }
 
-- (void)createNewModelWithName:(NSString *)modelName
+
+- (void)storePhoto:(id)photo inCacheWithKey:(NSString *)key
+{
+    if ([self.photoCache objectForKey:key] == nil) {
+        [self.photoCache setObject:photo forKey:key];
+    }
+    
+}
+
+- (FMItemModel *)createNewModelWithName:(NSString *)modelName
 {
     FMItemModel *model = [[FMItemModel alloc] initWithItem:modelName];
     [self.itemArray addObject:model];
+    
+    return model;
 }
 
 - (FMItemModel *)currentAddedModel
 {
-    return [self.itemArray firstObject];
+    FMItemModel *currentModel = [self.itemArray lastObject];
+    
+    if (currentModel && [currentModel.itemName isEqualToString:@""]) {
+        return currentModel;
+    }
+    
+    return nil;
 }
 
 - (NSArray *)searchForItemsWithTags:(NSString *) tags

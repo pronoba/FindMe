@@ -23,8 +23,8 @@
     if (self) {
         _itemName = itemName;
         _itemDescription = itemDescription;
-        _itemTags = [NSArray array];
-        _itemImages = [NSArray array];
+        _itemTags = [NSMutableArray array];
+        _itemImages = [NSMutableArray array];
     }
     
     return self;

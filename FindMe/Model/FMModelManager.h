@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *itemArray;
 
 - (NSArray *)searchForItemsWithTags:(NSString *) tags;
-- (void)createNewModelWithName:(NSString *)modelName;
+- (FMItemModel *)createNewModelWithName:(NSString *)modelName;
 - (FMItemModel *)currentAddedModel;
 
 - (NSData *)archiveModelManager;

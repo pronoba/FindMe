@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
+
++ (NSString *)reuseIdentifier;
 @end
