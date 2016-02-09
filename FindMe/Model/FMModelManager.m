@@ -22,6 +22,16 @@
     return sharedManager;
 }
 
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        _itemArray = [FMModelManager unarchiveModelManager];
+    }
+    
+    return self;
+}
+
 - (void)createNewModelWithName:(NSString *)modelName
 {
     FMItemModel *model = [[FMItemModel alloc] initWithItem:modelName];
@@ -36,7 +46,7 @@
 - (NSArray *)searchForItemsWithTags:(NSString *) tags
 {
     if (self.itemArray.count < 1) {
-        return nil;
+        return [NSArray array]; // returns empty array
     }
 
     NSMutableArray *searchArray = [[NSMutableArray alloc] init];
@@ -50,6 +60,26 @@
     return searchArray;
 }
 
+#pragma mark save
 
+- (NSData *)archiveModelManager
+{
+    NSData *cafeMealTimeData = [NSKeyedArchiver archivedDataWithRootObject:self.itemArray];
+    [[NSUserDefaults standardUserDefaults] setObject:cafeMealTimeData forKey:NSStringFromClass([self class])];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    return cafeMealTimeData;
+}
+
++ (NSMutableArray *)unarchiveModelManager
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:NSStringFromClass([self class])];
+    NSMutableArray *itemArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+    if (itemArray == nil) {
+        itemArray = [NSMutableArray array];
+    }
+    return itemArray;
+}
 
 @end

@@ -18,4 +18,7 @@
 - (NSArray *)searchForItemsWithTags:(NSString *) tags;
 - (void)createNewModelWithName:(NSString *)modelName;
 - (FMItemModel *)currentAddedModel;
+
+- (NSData *)archiveModelManager;
++ (NSMutableArray *)unarchiveModelManager;
 @end

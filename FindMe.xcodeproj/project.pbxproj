@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CD650880D8D657D53F66976 /* libPods-FindMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41C79BAA78426B4A9B3F8293 /* libPods-FindMe.a */; };
 		7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFB81B3A91A000683C21 /* FMInitialViewController.m */; };
 		7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFBF1B3A92C800683C21 /* FMItemModel.m */; };
 		7144CFC41B3A946500683C21 /* FMModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFC31B3A946500683C21 /* FMModelManager.m */; };
 		7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFC91B3A99C000683C21 /* FMFindViewController.m */; };
 		7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */; };
 		7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */; };
-		7144CFD41B3AA59A00683C21 /* PAPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */; };
+		719750E61C69739C00F6F40D /* FMPhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 719750E51C69739C00F6F40D /* FMPhotoObject.m */; };
 		719C6D931A898D6E0084D6EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D921A898D6E0084D6EA /* main.m */; };
 		719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D951A898D6E0084D6EA /* AppDelegate.m */; };
 		719C6D9C1A898D6E0084D6EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 719C6D9A1A898D6E0084D6EA /* Main.storyboard */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41C79BAA78426B4A9B3F8293 /* libPods-FindMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FindMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		45C09A9A41B7C0D1443E4508 /* Pods-FindMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindMe/Pods-FindMe.debug.xcconfig"; sourceTree = "<group>"; };
 		7144CFB71B3A91A000683C21 /* FMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMInitialViewController.h; sourceTree = "<group>"; };
 		7144CFB81B3A91A000683C21 /* FMInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMInitialViewController.m; sourceTree = "<group>"; };
 		7144CFBE1B3A92C800683C21 /* FMItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMItemModel.h; path = Model/FMItemModel.h; sourceTree = "<group>"; };
@@ -46,8 +49,8 @@
 		7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoCollectionViewController.h; sourceTree = "<group>"; };
 		7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewController.m; sourceTree = "<group>"; };
-		7144CFD01B3AA59A00683C21 /* PAPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoViewController.h; sourceTree = "<group>"; };
-		7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoViewController.m; sourceTree = "<group>"; };
+		719750E41C69739C00F6F40D /* FMPhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMPhotoObject.h; path = Model/FMPhotoObject.h; sourceTree = "<group>"; };
+		719750E51C69739C00F6F40D /* FMPhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMPhotoObject.m; path = Model/FMPhotoObject.m; sourceTree = "<group>"; };
 		719C6D8D1A898D6E0084D6EA /* FindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		719C6D911A898D6E0084D6EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		719C6D921A898D6E0084D6EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		719C6DA61A898D6E0084D6EA /* FindMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		719C6DAB1A898D6E0084D6EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		719C6DAC1A898D6E0084D6EA /* FindMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindMeTests.m; sourceTree = "<group>"; };
+		E55C02C767010A2C0BBFE5C6 /* Pods-FindMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindMe/Pods-FindMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CD650880D8D657D53F66976 /* libPods-FindMe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +84,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29C341E49C8259966E6B3376 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				45C09A9A41B7C0D1443E4508 /* Pods-FindMe.debug.xcconfig */,
+				E55C02C767010A2C0BBFE5C6 /* Pods-FindMe.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		30423EE3918BC4060781F658 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				41C79BAA78426B4A9B3F8293 /* libPods-FindMe.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7144CFBD1B3A92A500683C21 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +108,8 @@
 				7144CFC31B3A946500683C21 /* FMModelManager.m */,
 				7144CFBE1B3A92C800683C21 /* FMItemModel.h */,
 				7144CFBF1B3A92C800683C21 /* FMItemModel.m */,
+				719750E41C69739C00F6F40D /* FMPhotoObject.h */,
+				719750E51C69739C00F6F40D /* FMPhotoObject.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -105,6 +129,8 @@
 				719C6D8F1A898D6E0084D6EA /* FindMe */,
 				719C6DA91A898D6E0084D6EA /* FindMeTests */,
 				719C6D8E1A898D6E0084D6EA /* Products */,
+				29C341E49C8259966E6B3376 /* Pods */,
+				30423EE3918BC4060781F658 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,8 +149,6 @@
 				7144CFCB1B3AA59A00683C21 /* Views */,
 				7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */,
 				7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */,
-				7144CFD01B3AA59A00683C21 /* PAPhotoViewController.h */,
-				7144CFD11B3AA59A00683C21 /* PAPhotoViewController.m */,
 				7144CFC11B3A943600683C21 /* FMGlobalDefines.h */,
 				7144CFBD1B3A92A500683C21 /* Model */,
 				719C6D941A898D6E0084D6EA /* AppDelegate.h */,
@@ -174,9 +198,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 719C6DB01A898D6E0084D6EA /* Build configuration list for PBXNativeTarget "FindMe" */;
 			buildPhases = (
+				E2630C55C6FEE8375325E5AE /* Check Pods Manifest.lock */,
 				719C6D891A898D6E0084D6EA /* Sources */,
 				719C6D8A1A898D6E0084D6EA /* Frameworks */,
 				719C6D8B1A898D6E0084D6EA /* Resources */,
+				98718146D1A255CA150A0E36 /* Embed Pods Frameworks */,
+				EAE7130FD70BD278D2C2CCF8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -263,6 +290,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		98718146D1A255CA150A0E36 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FindMe/Pods-FindMe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2630C55C6FEE8375325E5AE /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAE7130FD70BD278D2C2CCF8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FindMe/Pods-FindMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		719C6D891A898D6E0084D6EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -270,10 +345,10 @@
 			files = (
 				7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */,
 				7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */,
+				719750E61C69739C00F6F40D /* FMPhotoObject.m in Sources */,
 				719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */,
 				7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */,
 				719C6D931A898D6E0084D6EA /* main.m in Sources */,
-				7144CFD41B3AA59A00683C21 /* PAPhotoViewController.m in Sources */,
 				7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */,
 				7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */,
 				7144CFC41B3A946500683C21 /* FMModelManager.m in Sources */,
@@ -398,6 +473,7 @@
 		};
 		719C6DB11A898D6E0084D6EA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 45C09A9A41B7C0D1443E4508 /* Pods-FindMe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -410,6 +486,7 @@
 		};
 		719C6DB21A898D6E0084D6EA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E55C02C767010A2C0BBFE5C6 /* Pods-FindMe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

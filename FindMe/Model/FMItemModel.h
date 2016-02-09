@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FMItemModel : NSObject
+@interface FMItemModel : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *itemDescription;
@@ -17,5 +17,8 @@
 
 - (id)initWithItem:(NSString *)itemName;
 - (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription;
+
+- (NSData *)archiveItemModel;
++ (FMItemModel *)unarchiveItemModel;
 
 @end

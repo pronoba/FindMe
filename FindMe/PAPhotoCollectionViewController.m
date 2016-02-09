@@ -58,9 +58,10 @@
     
     
     UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO)
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES)
     {
         cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+        cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
     }
     else
     {
@@ -69,7 +70,6 @@
     
     // Displays a control that allows the user to choose picture or
     // movie capture, if both are available:
-    cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
     
     // Hides the controls for moving & scaling pictures, or for
     // trimming movies. To instead show the controls, use YES.
@@ -97,54 +97,51 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    FMModelManager *modelManager = [FMModelManager sharedManager];
-//    return [modelManager.itemArray count];
-    
-    return 0;
+    FMModelManager *modelManager = [FMModelManager sharedManager];
+    return [modelManager.itemArray count];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"photoCell";
-//    __block PANetworkManager *networkManager = [PANetworkManager sharedManager];
-    __block PAPhotoCollectionViewCell *cell = (PAPhotoCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-//    __block PAPhotoModel *photoModel = [networkManager.photoArray objectAtIndex:indexPath.row];
-//    
-//    UIImage *photoImage = [networkManager.imageCache objectForKey:[photoModel.imageURL absoluteString]];
-//    
-//    if(photoImage) {
-//        [self setImageForCell:cell withImage:photoImage];
-//    } else {
-//        cell.photoImageView.image = nil;
-//        cell.photoImageView.alpha = 0.0;
-//        WeakSelf weakSelf = self;
-//        
-//        [networkManager downloadImageFromURL:photoModel.imageURL withCompletion:^(NSData *imageData, NSError *error) {
-//            UIImage *image = [[UIImage alloc] initWithData:imageData];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                __strong typeof(weakSelf) strongSelf = weakSelf;
-//                if (strongSelf) {
-//                    if (cell) {
-//                        [strongSelf setImageForCell:cell withImage:image];
-//                    }
-//                }
-//            });
-//            if (networkManager) {
-//                [networkManager.imageCache setObject:image forKey:[photoModel.imageURL absoluteString]];
-//            }
-//        }];
-//    }
+    __block PANetworkManager *networkManager = [PANetworkManager sharedManager];
+    __block PAPhotoModel *photoModel = [networkManager.photoArray objectAtIndex:indexPath.row];
+    
+    UIImage *photoImage = [networkManager.imageCache objectForKey:[photoModel.imageURL absoluteString]];
+    
+    if(photoImage) {
+        [self setImageForCell:cell withImage:photoImage];
+    } else {
+        cell.photoImageView.image = nil;
+        cell.photoImageView.alpha = 0.0;
+        WeakSelf weakSelf = self;
+        
+        [networkManager downloadImageFromURL:photoModel.imageURL withCompletion:^(NSData *imageData, NSError *error) {
+            UIImage *image = [[UIImage alloc] initWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                if (strongSelf) {
+                    if (cell) {
+                        [strongSelf setImageForCell:cell withImage:image];
+                    }
+                }
+            });
+            if (networkManager) {
+                [networkManager.imageCache setObject:image forKey:[photoModel.imageURL absoluteString]];
+            }
+        }];
+    }
     
     
     return cell;}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-//    PANetworkManager *networkManager = [PANetworkManager sharedManager];
-//    if ([networkManager.photoArray count]) {
-//        return 1;
-//    }
+    FMModelManager *networkManager = [PANetworkManager sharedManager];
+    if ([networkManager.photoArray count]) {
+        return 1;
+    }
     
     return 0;
 }
