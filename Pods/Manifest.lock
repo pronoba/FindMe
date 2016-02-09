@@ -1,0 +1,18 @@
+PODS:
+  - FLAnimatedImage (1.0.10)
+  - NYTPhotoViewer (1.1.0):
+    - NYTPhotoViewer/AnimatedGifSupport (= 1.1.0)
+    - NYTPhotoViewer/Core (= 1.1.0)
+  - NYTPhotoViewer/AnimatedGifSupport (1.1.0):
+    - FLAnimatedImage (~> 1.0.8)
+    - NYTPhotoViewer/Core
+  - NYTPhotoViewer/Core (1.1.0)
+
+DEPENDENCIES:
+  - NYTPhotoViewer (~> 1.1.0)
+
+SPEC CHECKSUMS:
+  FLAnimatedImage: e16a1e1cef08e4c509b47e4acbe3923f65c16135
+  NYTPhotoViewer: e80e8767f3780d2df37c6f72cbab15d6c7232911
+
+COCOAPODS: 0.39.0
