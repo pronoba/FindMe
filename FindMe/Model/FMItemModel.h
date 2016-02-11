@@ -11,12 +11,10 @@
 @interface FMItemModel : NSObject <NSCoding>
 
 @property (nonatomic, copy) NSString *itemName;
-@property (nonatomic, copy) NSString *itemDescription;
 @property (nonatomic, strong) NSMutableArray *itemTags;
-@property (nonatomic, strong) NSMutableArray *itemImages;
+@property (nonatomic, strong) NSMutableArray *photoObjects;
 
 - (id)initWithItem:(NSString *)itemName;
-- (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription;
 
 - (NSData *)archiveItemModel;
 + (FMItemModel *)unarchiveItemModel;

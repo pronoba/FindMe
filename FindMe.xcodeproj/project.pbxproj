@@ -14,6 +14,12 @@
 		7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFC91B3A99C000683C21 /* FMFindViewController.m */; };
 		7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */; };
 		7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */; };
+		71495E221C6C09A7009CDBF7 /* ImageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71495E201C6C09A7009CDBF7 /* ImageModel.xcdatamodeld */; };
+		71495E241C6C0A0B009CDBF7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71495E231C6C0A0B009CDBF7 /* CoreData.framework */; };
+		71495E721C6D47FD009CDBF7 /* Images+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 71495E6F1C6D47FD009CDBF7 /* Images+CoreDataProperties.m */; };
+		71495E731C6D47FD009CDBF7 /* Images.m in Sources */ = {isa = PBXBuildFile; fileRef = 71495E711C6D47FD009CDBF7 /* Images.m */; };
+		7175AE741C6AAA6600798500 /* FSAddCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175AE731C6AAA6600798500 /* FSAddCollectionViewCell.m */; };
+		7175AE771C6ABF0A00798500 /* FMTagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7175AE761C6ABF0A00798500 /* FMTagCollectionViewCell.m */; };
 		719750E61C69739C00F6F40D /* FMPhotoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 719750E51C69739C00F6F40D /* FMPhotoObject.m */; };
 		719C6D931A898D6E0084D6EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D921A898D6E0084D6EA /* main.m */; };
 		719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 719C6D951A898D6E0084D6EA /* AppDelegate.m */; };
@@ -50,6 +56,16 @@
 		7144CFCD1B3AA59A00683C21 /* PAPhotoCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewCell.m; sourceTree = "<group>"; };
 		7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAPhotoCollectionViewController.h; sourceTree = "<group>"; };
 		7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAPhotoCollectionViewController.m; sourceTree = "<group>"; };
+		71495E211C6C09A7009CDBF7 /* ImageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImageModel.xcdatamodel; sourceTree = "<group>"; };
+		71495E231C6C0A0B009CDBF7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		71495E6E1C6D47FD009CDBF7 /* Images+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Images+CoreDataProperties.h"; path = "Model/Images+CoreDataProperties.h"; sourceTree = "<group>"; };
+		71495E6F1C6D47FD009CDBF7 /* Images+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Images+CoreDataProperties.m"; path = "Model/Images+CoreDataProperties.m"; sourceTree = "<group>"; };
+		71495E701C6D47FD009CDBF7 /* Images.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Images.h; path = Model/Images.h; sourceTree = "<group>"; };
+		71495E711C6D47FD009CDBF7 /* Images.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Images.m; path = Model/Images.m; sourceTree = "<group>"; };
+		7175AE721C6AAA6600798500 /* FSAddCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSAddCollectionViewCell.h; sourceTree = "<group>"; };
+		7175AE731C6AAA6600798500 /* FSAddCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSAddCollectionViewCell.m; sourceTree = "<group>"; };
+		7175AE751C6ABF0A00798500 /* FMTagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMTagCollectionViewCell.h; path = Views/FMTagCollectionViewCell.h; sourceTree = "<group>"; };
+		7175AE761C6ABF0A00798500 /* FMTagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMTagCollectionViewCell.m; path = Views/FMTagCollectionViewCell.m; sourceTree = "<group>"; };
 		719750E41C69739C00F6F40D /* FMPhotoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMPhotoObject.h; path = Model/FMPhotoObject.h; sourceTree = "<group>"; };
 		719750E51C69739C00F6F40D /* FMPhotoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMPhotoObject.m; path = Model/FMPhotoObject.m; sourceTree = "<group>"; };
 		719C6D8D1A898D6E0084D6EA /* FindMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71495E241C6C0A0B009CDBF7 /* CoreData.framework in Frameworks */,
 				2CD650880D8D657D53F66976 /* libPods-FindMe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +116,7 @@
 		30423EE3918BC4060781F658 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				71495E231C6C0A0B009CDBF7 /* CoreData.framework */,
 				41C79BAA78426B4A9B3F8293 /* libPods-FindMe.a */,
 			);
 			name = Frameworks;
@@ -107,6 +125,7 @@
 		7144CFBD1B3A92A500683C21 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				71495E671C6D473A009CDBF7 /* Entities */,
 				7144CFC21B3A946500683C21 /* FMModelManager.h */,
 				7144CFC31B3A946500683C21 /* FMModelManager.m */,
 				7144CFBE1B3A92C800683C21 /* FMItemModel.h */,
@@ -128,9 +147,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		71495E671C6D473A009CDBF7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				71495E6E1C6D47FD009CDBF7 /* Images+CoreDataProperties.h */,
+				71495E6F1C6D47FD009CDBF7 /* Images+CoreDataProperties.m */,
+				71495E701C6D47FD009CDBF7 /* Images.h */,
+				71495E711C6D47FD009CDBF7 /* Images.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
 		719C6D841A898D6E0084D6EA = {
 			isa = PBXGroup;
 			children = (
+				71495E201C6C09A7009CDBF7 /* ImageModel.xcdatamodeld */,
 				719C6D8F1A898D6E0084D6EA /* FindMe */,
 				719C6DA91A898D6E0084D6EA /* FindMeTests */,
 				719C6D8E1A898D6E0084D6EA /* Products */,
@@ -155,6 +186,10 @@
 				7144CFCE1B3AA59A00683C21 /* PAPhotoCollectionViewController.h */,
 				7144CFCF1B3AA59A00683C21 /* PAPhotoCollectionViewController.m */,
 				7144CFC11B3A943600683C21 /* FMGlobalDefines.h */,
+				7175AE721C6AAA6600798500 /* FSAddCollectionViewCell.h */,
+				7175AE731C6AAA6600798500 /* FSAddCollectionViewCell.m */,
+				7175AE751C6ABF0A00798500 /* FMTagCollectionViewCell.h */,
+				7175AE761C6ABF0A00798500 /* FMTagCollectionViewCell.m */,
 				7144CFBD1B3A92A500683C21 /* Model */,
 				719C6D941A898D6E0084D6EA /* AppDelegate.h */,
 				719C6D951A898D6E0084D6EA /* AppDelegate.m */,
@@ -350,13 +385,18 @@
 			files = (
 				7144CFB91B3A91A000683C21 /* FMInitialViewController.m in Sources */,
 				7144CFC01B3A92C800683C21 /* FMItemModel.m in Sources */,
+				7175AE771C6ABF0A00798500 /* FMTagCollectionViewCell.m in Sources */,
 				719750E61C69739C00F6F40D /* FMPhotoObject.m in Sources */,
 				71A605841C69DA6300010985 /* NSItemPhotoDataSource.m in Sources */,
+				71495E721C6D47FD009CDBF7 /* Images+CoreDataProperties.m in Sources */,
 				719C6D961A898D6E0084D6EA /* AppDelegate.m in Sources */,
 				7144CFD21B3AA59A00683C21 /* PAPhotoCollectionViewCell.m in Sources */,
 				719C6D931A898D6E0084D6EA /* main.m in Sources */,
+				7175AE741C6AAA6600798500 /* FSAddCollectionViewCell.m in Sources */,
 				7144CFCA1B3A99C000683C21 /* FMFindViewController.m in Sources */,
 				7144CFD31B3AA59A00683C21 /* PAPhotoCollectionViewController.m in Sources */,
+				71495E731C6D47FD009CDBF7 /* Images.m in Sources */,
+				71495E221C6C09A7009CDBF7 /* ImageModel.xcdatamodeld in Sources */,
 				7144CFC41B3A946500683C21 /* FMModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Pronob Ashwin (J9DLWTFVB2)";
 				INFOPLIST_FILE = FindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -496,7 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = FindMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -568,6 +608,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71495E201C6C09A7009CDBF7 /* ImageModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71495E211C6C09A7009CDBF7 /* ImageModel.xcdatamodel */,
+			);
+			currentVersion = 71495E211C6C09A7009CDBF7 /* ImageModel.xcdatamodel */;
+			path = ImageModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 719C6D851A898D6E0084D6EA /* Project object */;
 }

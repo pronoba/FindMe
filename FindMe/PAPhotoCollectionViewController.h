@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class FMItemModel;
+
 @interface PAPhotoCollectionViewController : UIViewController
+
+
+@property (nonatomic, strong) FMItemModel *currentItemModel;
+
+- (instancetype)initWithItemModel:(FMItemModel *)itemModel;
 
 @end

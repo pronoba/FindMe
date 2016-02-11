@@ -20,20 +20,45 @@
     return itemPhotoDataSource;
 }
 
+- (void)removeTag:(NSString *)tag
+{
+    FMItemModel *itemModel = [[FMModelManager sharedManager] currentAddedModel];
+    
+    if ([itemModel.itemTags containsObject:tag]) {
+        [itemModel.itemTags removeObject:tag];
+    }
+}
+
+- (NSInteger)numberOfTagsForItem:(FMItemModel *)itemModel
+{
+    return [itemModel.itemTags count];
+}
 
 
 - (NSInteger)numberOfPhotosForItem:(FMItemModel *)itemModel
 {
-    NSArray *photosArray = itemModel.itemImages;
+    NSArray *photosArray = itemModel.photoObjects;
     return [photosArray count];
 }
 
 
 - (UIImage *)imageForItem:(FMItemModel *)item atIndex:(NSInteger)row
 {
-    UIImage *image = [item.itemImages objectAtIndex:row];
+    FMPhotoObject *photoObject = [item.photoObjects objectAtIndex:row];
     
-    return image;
+    return photoObject.image;
+}
+
+
+- (void)addTagToNewItem:(NSString *)tagString
+{
+    FMItemModel *itemModel = [[FMModelManager sharedManager] currentAddedModel];
+    
+    if (itemModel == nil) {
+        itemModel = [[FMModelManager sharedManager] createNewModelWithName:@""];
+    }
+    
+    [itemModel.itemTags addObject:tagString];
 }
 
 - (void)addImageToNewItem:(UIImage *)image
@@ -44,7 +69,10 @@
         itemModel = [[FMModelManager sharedManager] createNewModelWithName:@""];
     }
     
-    [itemModel.itemImages addObject:image];
+    FMPhotoObject *newPhotoObject = [[FMPhotoObject alloc] init];
+    newPhotoObject.attributedCaptionTitle = [[NSAttributedString alloc] initWithString:@"" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleBody]}];
+    newPhotoObject.image = image;
+    [itemModel.photoObjects addObject:newPhotoObject];
 }
 
 - (void)saveItemWithName:(NSString *)name

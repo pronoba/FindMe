@@ -7,8 +7,18 @@
 //
 
 #import "FMInitialViewController.h"
+#import "FMModelManager.h"
 
 @implementation FMInitialViewController
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    FMModelManager *modelManager = [FMModelManager sharedManager];
+    [modelManager initialize];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {

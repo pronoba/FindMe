@@ -12,15 +12,21 @@
 #import "PAPhotoCollectionViewCell.h"
 #import "NSItemPhotoDataSource.h"
 #import "NYTPhotosViewController.h"
+#import "FMPhotoObject.h"
+#import "FSAddCollectionViewCell.h"
+#import "FMTagCollectionViewCell.h"
 
-@interface PAPhotoCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate,
-                                                UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+
+static NSString * const addCellIdentifier = @"addCell";
+static NSString * const tagCellIdentifier = @"tagCell";
+
+@interface PAPhotoCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate, FMTagCollectionViewCellDelegate,
+                                                UIImagePickerControllerDelegate, UINavigationControllerDelegate, NYTPhotosViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollectionView;
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, strong) FMItemModel *currentItemModel;
-
+@property (strong, nonatomic) NSIndexPath *currentIndexPath;
 @property (weak, nonatomic) IBOutlet UITextField *tagsTextField;
 
 
@@ -28,24 +34,62 @@
 
 @implementation PAPhotoCollectionViewController
 
+
+- (instancetype)initWithItemModel:(FMItemModel *)itemModel
+{
+    self = [super init];
+    
+    if (self)
+    {
+        _currentItemModel = itemModel;
+    }
+    
+    return self;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [[FMModelManager sharedManager] createNewModelWithName:@"New Model"];
-    self.currentItemModel = [[FMModelManager sharedManager] currentAddedModel];
     
-    [self startCameraControllerFromViewController:self usingDelegate:self];
+    if (_currentItemModel == nil) {
+        _currentItemModel = [[FMModelManager sharedManager] currentAddedModel];
+        self.currentIndexPath = nil;
+        
+        if (_currentItemModel == nil) {
+            _currentItemModel = [[FMModelManager sharedManager] createNewModelWithName:@""];
+        }
+        [self startCameraControllerFromViewController:self usingDelegate:self];
+    } else {
+        [self.photoCollectionView reloadData];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.tagsTextField.text = self.currentItemModel.itemName;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)resetCollectionView {
+    [self.photoCollectionView deselectItemAtIndexPath:self.currentIndexPath animated:YES];
+    [self.photoCollectionView reloadData];
+}
+
+
+- (void)refreshCurrentCell
+{
+    [self.photoCollectionView performBatchUpdates:^{
+        [self.photoCollectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
+    } completion:nil];
+    
+}
+
 
 /*
 #pragma mark - Navigation
@@ -100,44 +144,76 @@
 
 #pragma mark UICollectionViewDataSource
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return CGSizeMake(170, 170);
+    }
+
+    NSString *tag = [self.currentItemModel.itemTags objectAtIndex:indexPath.row];
+    CGSize labelSize = [tag sizeWithAttributes:NULL];
+    
+    return CGSizeMake(labelSize.width + 80, 36);
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
-    return ([photoDataSource numberOfPhotosForItem:self.currentItemModel]);
+    if (section == 0) {
+        return ([photoDataSource numberOfPhotosForItem:self.currentItemModel] + 1);
+    }
+    
+    return [photoDataSource numberOfTagsForItem:self.currentItemModel];
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PAPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: [PAPhotoCollectionViewCell reuseIdentifier]
-                                                                                     forIndexPath: indexPath];
-
     NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
 
-    UIImage *photoImage = [photoDataSource imageForItem:self.currentItemModel atIndex:indexPath.row];
-    
-    if(photoImage) {
-        [self setImageForCell:cell withImage:photoImage];
+    if (indexPath.section == 0) {
+        
+        if (indexPath.row == [photoDataSource numberOfPhotosForItem:self.currentItemModel]) {
+            FSAddCollectionViewCell *cell = (FSAddCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:addCellIdentifier forIndexPath:indexPath];
+            cell.borderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            cell.borderView.layer.borderWidth = 2.0;
+            
+            return cell;
+        }
+        
+        
+        PAPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: [PAPhotoCollectionViewCell reuseIdentifier]
+                                                                                    forIndexPath: indexPath];
+        
+        UIImage *photoImage = [photoDataSource imageForItem:self.currentItemModel atIndex:indexPath.row];
+        
+        if(photoImage) {
+            [self setImageForCell:cell withImage:photoImage];
+        }
+        
+        return cell;
     }
     
+    // tags section
+    
+    FMTagCollectionViewCell *cell = (FMTagCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:tagCellIdentifier forIndexPath:indexPath];
+    cell.delegate = self;
+    [self configureCell:cell atIndexPath:indexPath];
+    
     return cell;
+
+}
+
+- (void)configureCell:(FMTagCollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    [cell assignTagsFrom:self.currentItemModel forTagIndex:indexPath.row];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
-- (NSIndexPath *)getCurrentIndexPath
-{
-    NSArray *indexPathArray = [self.photoCollectionView indexPathsForSelectedItems];
-    if (indexPathArray.count > 0) {
-        NSIndexPath *indexPath = [indexPathArray objectAtIndex:0];
-        return indexPath;
-    }
-    
-    return nil;
-}
 
 #pragma mark actions
 
@@ -145,13 +221,36 @@
     NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
 
     [photoDataSource saveItemWithName:self.tagsTextField.text];
+    
+    [self.tagsTextField resignFirstResponder];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[FMModelManager sharedManager] archiveModelManager];
+        [[FMModelManager sharedManager] saveImagesForItemModel:self.currentItemModel];
+    });
 }
 
 
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showDetailSegue" sender:self];
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+    
+    // Add pressed
+    if (indexPath.row == [photoDataSource numberOfPhotosForItem:self.currentItemModel]) {
+        
+        self.currentIndexPath = nil;
+
+        [self showActionSheet];
+        
+        return;
+    }
+
+    
+    NYTPhotosViewController *photosViewController = [[NYTPhotosViewController alloc] initWithPhotos:self.currentItemModel.photoObjects];
+    photosViewController.delegate = self;
+    
+    [self presentViewController:photosViewController animated:YES completion:nil];
 }
 
 
@@ -172,6 +271,72 @@
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
+}
+
+- (void)showTagAlert
+{
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Tag"
+                                          message:@"Tag this shit..."
+                                          preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Tag";
+    }];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        UITextField *tagTextField = alertController.textFields.firstObject;
+
+        NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+        [photoDataSource addTagToNewItem:tagTextField.text];
+        [self.photoCollectionView reloadData];
+    }];
+    
+    [alertController addAction:okAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)showActionSheet
+{
+    
+    UIAlertController *alertController = [UIAlertController
+                                          alertControllerWithTitle:@"Add a detail"
+                                          message:@"Tag or take a photo"
+                                          preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *actionTag = [UIAlertAction actionWithTitle:@"Add a Tag" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showTagAlert];
+    }];
+
+    
+    UIAlertAction *actionPhoto = [UIAlertAction actionWithTitle:@"Add a Photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self startCameraControllerFromViewController:self usingDelegate:self];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * __nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+
+    
+    [alertController addAction:actionTag];
+    [alertController addAction:actionPhoto];
+    [alertController addAction:cancelAction];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+#pragma mark FMTagCollectionViewCellDelegate
+
+- (void)deleteCollectionViewCell:(FMTagCollectionViewCell *)tagCollectionViewCell;
+{
+    NSItemPhotoDataSource *photoDataSource = [NSItemPhotoDataSource photoDataSource];
+
+    [self.photoCollectionView performBatchUpdates: ^{
+        [photoDataSource removeTag:tagCollectionViewCell.tagString];
+        NSIndexPath *indexPath = [self.photoCollectionView indexPathForCell:tagCollectionViewCell];
+        [self.photoCollectionView deleteItemsAtIndexPaths: @[indexPath]];
+    } completion:nil];
 }
 
 @end

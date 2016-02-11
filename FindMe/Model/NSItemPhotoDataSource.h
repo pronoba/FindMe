@@ -16,10 +16,11 @@
 
 + (instancetype)photoDataSource;
 
+- (NSInteger)numberOfTagsForItem:(FMItemModel *)itemModel;
 - (NSInteger)numberOfPhotosForItem:(FMItemModel *)itemModel;
-
+- (void)removeTag:(NSString *)tag;
 - (UIImage *)imageForItem:(FMItemModel *)item atIndex:(NSInteger)row;
 - (void)addImageToNewItem:(UIImage *)image;
-
+- (void)addTagToNewItem:(NSString *)tagString;
 - (void)saveItemWithName:(NSString *)name;
 @end

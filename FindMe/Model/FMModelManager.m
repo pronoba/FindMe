@@ -7,12 +7,8 @@
 //
 
 #import "FMModelManager.h"
-
-@interface FMModelManager ()
-
-@property (nonatomic, strong) NSCache *photoCache;
-
-@end
+#import "FMPhotoObject.h"
+#import "Images.h"
 
 @implementation FMModelManager
 
@@ -33,18 +29,22 @@
     
     if (self) {
         _itemArray = [FMModelManager unarchiveModelManager];
-        _photoCache = [[NSCache alloc] init];
+        _managedObjectContext = APPDELEGATE.managedObjectContext;
     }
     return self;
 }
 
 
-- (void)storePhoto:(id)photo inCacheWithKey:(NSString *)key
+- (void)initialize
 {
-    if ([self.photoCache objectForKey:key] == nil) {
-        [self.photoCache setObject:photo forKey:key];
+    for (FMItemModel *itemModel in self.itemArray) {
+        for (FMPhotoObject *photoObject in itemModel.photoObjects) {
+            NSInteger index = [itemModel.photoObjects indexOfObject:photoObject];
+            NSString *uuid = [NSString stringWithFormat:@"%@:%ld", itemModel.itemName, (long)index];
+
+            photoObject.image = [self readImagesFromDBForKey:uuid];
+        }
     }
-    
 }
 
 - (FMItemModel *)createNewModelWithName:(NSString *)modelName
@@ -75,22 +75,74 @@
     NSMutableArray *searchArray = [[NSMutableArray alloc] init];
     
     for (FMItemModel *item in self.itemArray) {
-        if ([item.itemTags containsObject:tags]) {
+        if ([item.itemName localizedCaseInsensitiveContainsString:tags]) {
             [searchArray addObject:item];
+        } else {
+            for (NSString *itemTags in item.itemTags) {
+                if ([itemTags localizedCaseInsensitiveContainsString:tags]) {
+                    [searchArray addObject:item];
+                    break;
+                }
+            }
         }
     }
     
     return searchArray;
 }
 
+
+- (UIImage *)readImagesFromDBForKey:(NSString *)uuid
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uuid == %@", uuid];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Images"];
+    fetchRequest.predicate = predicate;
+    
+    NSError *error;
+    
+    NSArray *fetchedResults = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    UIImage *imageFromPhotoObject = nil;
+    if (fetchedResults.count > 0) {
+        Images *imageObject = [fetchedResults firstObject];
+        NSData *dataFromImage = imageObject.image;
+        imageFromPhotoObject = [UIImage imageWithData:dataFromImage];
+    }
+    
+    
+    return imageFromPhotoObject;
+}
+
+
+- (void)saveImagesForItemModel:(FMItemModel *)itemModel
+{
+    NSError *error;
+    
+    for (FMPhotoObject *photoObject in itemModel.photoObjects) {
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Images" inManagedObjectContext:self.managedObjectContext];
+        NSManagedObject *options = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        NSData *imageData = UIImageJPEGRepresentation(photoObject.image, 1.0);
+        NSInteger index = [itemModel.photoObjects indexOfObject:photoObject];
+        NSString *uuid = [NSString stringWithFormat:@"%@:%ld", itemModel.itemName, (long)index];
+        [options setValue:imageData forKey:@"image"];
+        [options setValue:uuid forKey:@"uuid"];
+        NSLog(@"saved entity %@", uuid);
+        if ([self.managedObjectContext save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
+    }
+    
+    
+}
+
 #pragma mark save
 
 - (NSData *)archiveModelManager
 {
+    NSLog(@"Begin ------");
     NSData *cafeMealTimeData = [NSKeyedArchiver archivedDataWithRootObject:self.itemArray];
     [[NSUserDefaults standardUserDefaults] setObject:cafeMealTimeData forKey:NSStringFromClass([self class])];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
+    NSLog(@"------ End");
     return cafeMealTimeData;
 }
 
@@ -102,6 +154,7 @@
     if (itemArray == nil) {
         itemArray = [NSMutableArray array];
     }
+    
     return itemArray;
 }
 

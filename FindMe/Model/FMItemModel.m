@@ -13,18 +13,11 @@
 
 - (id)initWithItem:(NSString *)itemName
 {
-    self = [self initWithItem:itemName withDescription:@""];
-    return self;
-}
-
-- (id)initWithItem:(NSString *)itemName withDescription:(NSString *)itemDescription
-{
     self = [super init];
     if (self) {
         _itemName = itemName;
-        _itemDescription = itemDescription;
         _itemTags = [NSMutableArray array];
-        _itemImages = [NSMutableArray array];
+        _photoObjects = [NSMutableArray array];
     }
     
     return self;
@@ -36,20 +29,22 @@
 - (id)initWithCoder: (NSCoder *)decoder {
     
     if (self = [super init]) {
+        NSLog(@"decoding item model");
         _itemName = [decoder decodeObjectForKey:@"itemName"];
-        _itemDescription = [decoder decodeObjectForKey:@"itemDescription"];
         _itemTags = [decoder decodeObjectForKey:@"itemTags"];
-        _itemImages = [decoder decodeObjectForKey:@"itemImages"];
+        _photoObjects = [decoder decodeObjectForKey:@"itemImages"];
+        NSLog(@"done item model decoding");
     }
     
     return self;
 }
 
 - (void)encodeWithCoder: (NSCoder *)encoder {
+    NSLog(@"encoding item model");
     [encoder encodeObject:_itemName forKey:@"itemName"];
-    [encoder encodeObject:_itemDescription forKey:@"itemDescription"];
     [encoder encodeObject:_itemTags forKey:@"itemTags"];
-    [encoder encodeObject:_itemImages forKey:@"itemImages"];
+    [encoder encodeObject:_photoObjects forKey:@"itemImages"];
+    NSLog(@"done item model encoding");
 }
 
 #pragma mark - Archiver & Unarchiver

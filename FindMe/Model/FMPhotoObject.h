@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <NYTPhotoViewer/NYTPhoto.h>
 
-@interface FMPhotoObject : NSObject <NYTPhoto>
+@interface FMPhotoObject : NSObject <NYTPhoto, NSCoding>
 
 
 // Redeclare all the properties as readwrite for sample/testing purposes.
@@ -19,6 +19,10 @@
 @property (nonatomic) NSAttributedString *attributedCaptionTitle;
 @property (nonatomic) NSAttributedString *attributedCaptionSummary;
 @property (nonatomic) NSAttributedString *attributedCaptionCredit;
+
+
+- (NSData *)archiveItemModel;
++ (FMPhotoObject *)unarchiveItemModel;
 
 
 @end
