@@ -15,7 +15,7 @@
 
 
 + (instancetype)photoDataSource;
-
+- (void)persistModelManager:(FMItemModel *)itemModel;
 - (NSInteger)numberOfTagsForItem:(FMItemModel *)itemModel;
 - (NSInteger)numberOfPhotosForItem:(FMItemModel *)itemModel;
 - (void)removeTag:(NSString *)tag;
@@ -23,4 +23,5 @@
 - (void)addImageToNewItem:(UIImage *)image;
 - (void)addTagToNewItem:(NSString *)tagString;
 - (void)saveItemWithName:(NSString *)name;
+- (void)removeItemAtIndex:(NSInteger)index;
 @end

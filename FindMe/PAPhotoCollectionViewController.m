@@ -223,11 +223,8 @@ static NSString * const tagCellIdentifier = @"tagCell";
     [photoDataSource saveItemWithName:self.tagsTextField.text];
     
     [self.tagsTextField resignFirstResponder];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        [[FMModelManager sharedManager] archiveModelManager];
-        [[FMModelManager sharedManager] saveImagesForItemModel:self.currentItemModel];
-    });
+
+    [photoDataSource persistModelManager:self.currentItemModel];
 }
 
 

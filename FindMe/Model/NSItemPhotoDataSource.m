@@ -29,6 +29,14 @@
     }
 }
 
+- (void)persistModelManager:(FMItemModel *)itemModel
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [[FMModelManager sharedManager] archiveModelManager];
+        [[FMModelManager sharedManager] saveImagesForItemModel:itemModel];
+    });
+}
+
 - (NSInteger)numberOfTagsForItem:(FMItemModel *)itemModel
 {
     return [itemModel.itemTags count];
@@ -83,5 +91,13 @@
         itemModel.itemName = name;
     }
 }
+
+- (void)removeItemAtIndex:(NSInteger)index
+{
+    FMModelManager *itemModelManager = [FMModelManager sharedManager];
+    [itemModelManager.itemArray removeObjectAtIndex:index];
+    
+}
+
 
 @end

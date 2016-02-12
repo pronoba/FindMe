@@ -10,6 +10,7 @@
 #import "FMModelManager.h"
 #import "FMPhotoObject.h"
 #import "NYTPhotosViewController.h"
+#import "NSItemPhotoDataSource.h"
 #import "PAPhotoCollectionViewController.h"
 
 @interface FMFindViewController() <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating>
@@ -129,6 +130,24 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 88;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSItemPhotoDataSource *itemsDataSource = [NSItemPhotoDataSource photoDataSource];
+        
+        [itemsDataSource removeItemAtIndex:indexPath.row];
+        [[FMModelManager sharedManager] archiveModelManager];
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark UITableViewDelegate
